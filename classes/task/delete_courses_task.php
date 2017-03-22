@@ -68,7 +68,7 @@ class delete_courses_task extends \core\task\adhoc_task {
             $lock = $lockfactory->get_lock($lockkey, 0);
 
             // Guard against multiple workers in cron.
-            if ($lock === false) {
+            if ($lock !== false) {
                 if ($DB->get_record('course', array('id' => $course->id))) {
                     if (!delete_course($course, false)) {
                         mtrace("Failed to delete course {$course->id}");
