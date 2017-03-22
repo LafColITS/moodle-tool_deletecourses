@@ -32,7 +32,10 @@ class delete_courses_task extends \core\task\adhoc_task {
     }
 
     public function execute() {
-        global $DB;
+        global $CFG, $DB;
+        if (!array_key_exists('tool_recyclebin', $CFG->forced_plugin_settings)) {
+            $CFG->forced_plugin_settings['tool_recyclebin'] = array('categorybinenable' => false);
+        }
         $data = $this->get_custom_data();
 
         // Finish if no category id specified.
