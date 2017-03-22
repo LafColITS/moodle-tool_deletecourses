@@ -36,4 +36,4 @@ script:
   - moodle-plugin-ci shifter
   - moodle-plugin-ci jshint
   - moodle-plugin-ci validate
-  - moodle-plugin-ci phpunit
+  - travis_wait 30 moodle-plugin-ci phpunit
