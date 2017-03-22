@@ -32,6 +32,7 @@ class delete_courses_task extends \core\task\adhoc_task {
     }
 
     public function execute() {
+        global $DB;
         $data = $this->get_custom_data();
 
         // Finish if no category id specified.
