@@ -13,14 +13,14 @@ Background:
     | Category 4 | 0        | CAT4     | 0       |
   And the following "courses" exist:
     | fullname | shortname | category | visible |
-    | Course 1 | C1        | CAT2     | 1       |
+    | Course 1 | C1        | CAT1     | 1       |
     | Course 2 | C2        | CAT2     | 1       |
     | Course 3 | C3        | CAT3     | 1       |
     | Course 4 | C4        | CAT3     | 1       |
     | Course 5 | C5        | CAT4     | 1       |
 
 @javascript
-Scenario: Manager hides all but one course
+Scenario: Manager deletes all courses
   When I log in as "admin"
   And I go to the courses management page
   And I click on category "Category 1" in the management interface
@@ -30,4 +30,20 @@ Scenario: Manager hides all but one course
   And I go to the courses management page
   And I click on category "Category 1" in the management interface
   And I should not see "Course 1"
+  And I click on category "Category 2" in the management interface
   And I should not see "Course 2"
+
+@javascript
+Scenario: Manager deletes all courses
+  When I log in as "admin"
+  And I go to the courses management page
+  And I click on category "Category 1" in the management interface
+  And I follow "Delete all courses"
+  And I set the field "Recurse through subcategories?" to "0"
+  And I press "Confirm"
+  And I trigger cron
+  And I go to the courses management page
+  And I click on category "Category 1" in the management interface
+  And I should not see "Course 1"
+  And I click on category "Category 2" in the management interface
+  And I should see "Course 2"

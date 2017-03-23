@@ -53,7 +53,9 @@ class tool_deletecourses_deletecourses_testcase extends advanced_testcase {
         $task = new \tool_deletecourses\task\delete_courses_task();
         $task->set_custom_data(
             array(
-                'category' => $category1->id
+                'category' => $category1->id,
+                'recursive' => true,
+                'disablerecyclebin' => true
             )
         );
         \core\task\manager::queue_adhoc_task($task);

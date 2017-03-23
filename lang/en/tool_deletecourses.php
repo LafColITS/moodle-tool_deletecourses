@@ -28,5 +28,5 @@ $string['deleteallcourses'] = 'Delete all courses';
 $string['deleteconfirm'] = 'This page lets you delete all the courses in the category <strong>{$a}</strong> and its subcategories. This action cannot be undone.';
 $string['deletequeued'] = 'An adhoc task has been queued to delete all the courses in the category <strong>{$a}</strong> and subcategories. It will run the next time cron executes.';
 $string['disablerecyclebin'] = 'Disable recycle bin';
-$string['disablerecyclebin_desc'] = 'Bypass the recycle bin when using this tool to delete courses.';
 $string['pluginname'] = 'Delete courses';
+$string['recursive'] = 'Recurse through subcategories?';

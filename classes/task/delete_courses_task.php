@@ -33,11 +33,10 @@ class delete_courses_task extends \core\task\adhoc_task {
 
     public function execute() {
         global $CFG;
-        if (get_config('tool_deletecourses', 'disablerecyclebin') &&
-            !array_key_exists('tool_recyclebin', $CFG->forced_plugin_settings)) {
+        $data = $this->get_custom_data();
+        if ($data->disablerecyclebin && !array_key_exists('tool_recyclebin', $CFG->forced_plugin_settings)) {
             $CFG->forced_plugin_settings['tool_recyclebin'] = array('categorybinenable' => false);
         }
-        $data = $this->get_custom_data();
 
         // Finish if no category id specified.
         if (empty($data->category)) {
@@ -53,7 +52,7 @@ class delete_courses_task extends \core\task\adhoc_task {
         }
 
         // Finish if there are no courses.
-        if (!$courses = $this->get_courses_in_category($category, true)) {
+        if (!$courses = $this->get_courses_in_category($category, $data->recursive)) {
             mtrace("No courses found");
             return;
         }
