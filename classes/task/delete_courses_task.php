@@ -32,7 +32,7 @@ class delete_courses_task extends \core\task\adhoc_task {
     }
 
     public function execute() {
-        global $CFG, $DB;
+        global $CFG;
         if (get_config('tool_deletecourses', 'disablerecyclebin') &&
             !array_key_exists('tool_recyclebin', $CFG->forced_plugin_settings)) {
             $CFG->forced_plugin_settings['tool_recyclebin'] = array('categorybinenable' => false);
@@ -52,21 +52,41 @@ class delete_courses_task extends \core\task\adhoc_task {
             return;
         }
 
-        // Get all the courses.
-        $courses = $category->get_courses(
-            array(
-                'recursive' => true,
-                'limit' => 0
-            )
-        );
-
         // Finish if there are no courses.
-        if (!$courses) {
+        if (!$courses = $this->get_courses_in_category($category, true)) {
             mtrace("No courses found");
             return;
         }
 
         // Delete all courses.
+        $this->delete_courses_in_category($courses);
+        fix_course_sortorder();
+    }
+
+    /**
+     * Get all the courses to be deleted.
+     *
+     * @param object $category The category.
+     * @param boolean $recursive Whether to delete courses in subcategories.
+     * @return array
+     */
+    protected function get_courses_in_category($category, $recursive) {
+        // Get all the courses.
+        $courses = $category->get_courses(
+            array(
+                'recursive' => $recursive,
+                'limit' => 0
+            )
+        );
+        return $courses;
+    }
+
+    /**
+     * @param array $courses The courses to be deleted.
+     */
+    protected function delete_courses_in_category($courses) {
+        global $DB;
+
         $lockfactory = \core\lock\lock_config::get_lock_factory('tool_deletecourses_delete_course_task');
         foreach ($courses as $course) {
             $lockkey = "course{$course->id}";
@@ -82,6 +102,5 @@ class delete_courses_task extends \core\task\adhoc_task {
                 $lock->release();
             }
         }
-        fix_course_sortorder();
     }
 }
