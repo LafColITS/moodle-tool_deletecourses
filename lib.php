@@ -31,7 +31,7 @@ function tool_deletecourses_extend_navigation_category_settings($navigation, $co
                 get_string('deleteallcourses', 'tool_deletecourses'),
                 new moodle_url(
                     "/admin/tool/deletecourses/delete.php",
-                    array('category' => $context->instanceid, 'action' => 0)
+                    array('category' => $context->instanceid)
                 ),
                 navigation_node::TYPE_SETTING,
                 null,
