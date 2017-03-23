@@ -20,11 +20,16 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+defined('MOODLE_INTERNAL') || die;
 
-$plugin->version   = 2017032300;
-$plugin->requires  = 2015111600;
-$plugin->cron      = 0;
-$plugin->component = 'tool_deletecourses';
-$plugin->maturity  = MATURITY_ALPHA;
-$plugin->release   = 'v0.0.1';
+if ($hassiteconfig) {
+    $settings = new admin_settingpage('tool_deletecourses', get_string('pluginname', 'tool_deletecourses'));
+    $ADMIN->add('tools', $settings);
+
+    $settings->add(new admin_setting_configcheckbox(
+        'tool_deletecourses/disablerecyclebin',
+        new lang_string('disablerecyclebin', 'tool_deletecourses'),
+        new lang_string('disablerecyclebin_desc', 'tool_deletecourses'),
+        1
+    ));
+}

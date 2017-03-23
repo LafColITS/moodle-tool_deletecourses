@@ -25,4 +25,6 @@
 defined('MOODLE_INTERNAL') || die;
 
 $string['deleteallcourses'] = 'Delete all courses';
+$string['disablerecyclebin'] = 'Disable recycle bin';
+$string['disablerecyclebin_desc'] = 'Bypass the recycle bin when using this tool to delete courses.';
 $string['pluginname'] = 'Delete courses';
