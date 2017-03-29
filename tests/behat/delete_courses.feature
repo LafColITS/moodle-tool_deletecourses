@@ -22,9 +22,9 @@ Background:
 @javascript
 Scenario: Manager deletes all courses
   When I log in as "admin"
-  And I go to the courses management page
-  And I click on category "Category 1" in the management interface
-  And I follow "Delete all courses"
+  And I am on course index
+  And I follow "Category 1"
+  When I navigate to "Delete all courses" in current page administration
   And I press "Confirm"
   And I trigger cron
   And I go to the courses management page
@@ -36,9 +36,9 @@ Scenario: Manager deletes all courses
 @javascript
 Scenario: Manager deletes all courses
   When I log in as "admin"
-  And I go to the courses management page
-  And I click on category "Category 1" in the management interface
-  And I follow "Delete all courses"
+  And I am on course index
+  And I follow "Category 1"
+  When I navigate to "Delete all courses" in current page administration
   And I set the field "Recurse through subcategories?" to "0"
   And I press "Confirm"
   And I trigger cron
