@@ -28,7 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 global $CFG;
 
 class tool_deletecourses_deletecourses_testcase extends advanced_testcase {
-    public function test_hide_course() {
+    public function test_delete_course() {
         global $DB;
 
         $this->setAdminUser();
