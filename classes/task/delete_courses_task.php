@@ -59,7 +59,6 @@ class delete_courses_task extends \core\task\adhoc_task {
 
         // Delete all courses.
         $this->delete_courses_in_category($courses);
-        fix_course_sortorder();
     }
 
     /**
@@ -96,6 +95,8 @@ class delete_courses_task extends \core\task\adhoc_task {
                 if ($coursedb = $DB->get_record('course', array('id' => $course->id))) {
                     if (!delete_course($coursedb, false)) {
                         mtrace("Failed to delete course {$course->id}");
+                    } else {
+                        fix_course_sortorder();
                     }
                 }
                 $lock->release();
