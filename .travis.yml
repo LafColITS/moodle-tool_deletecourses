@@ -10,12 +10,22 @@ php:
  - 5.6
  - 7.0
 
+addons:
+  postgresql: 9.3
+  apt:
+    packages:
+      - firefox=28.0+build2-0ubuntu2
+
 env:
  matrix:
   - DB=pgsql MOODLE_BRANCH=MOODLE_30_STABLE
   - DB=pgsql MOODLE_BRANCH=MOODLE_31_STABLE
   - DB=mysqli MOODLE_BRANCH=MOODLE_30_STABLE
   - DB=mysqli MOODLE_BRANCH=MOODLE_31_STABLE
+ global:
+  - MOODLE_START_BEHAT_SERVERS=NO
+  - MOODLE_DIR=/home/travis/build/moodle
+  - MOODLE_SELENIUM_JAR=/home/travis/build/moodle/selenium.jar
 
 before_install:
   - phpenv config-rm xdebug.ini
@@ -23,9 +33,13 @@ before_install:
   - composer selfupdate
   - composer create-project -n --no-dev --prefer-dist moodlerooms/moodle-plugin-ci ci ^1
   - export PATH="$(cd ci/bin; pwd):$(cd ci/vendor/bin; pwd):$PATH"
+  - sleep 10
 
 install:
   - moodle-plugin-ci install
+  - xvfb-run -a --server-args="-screen 0 1024x768x24" java -Dwebdriver.firefox.bin=/usr/bin/firefox -jar ${MOODLE_SELENIUM_JAR} -log /tmp/selenium.log &
+  - php -t ${MOODLE_DIR} -S localhost:8000 > /tmp/php-access.log 2> /tmp/php-error.log &
+  - sleep 5
 
 script:
   - moodle-plugin-ci phplint
@@ -37,4 +51,4 @@ script:
   - moodle-plugin-ci jshint
   - moodle-plugin-ci validate
   - moodle-plugin-ci phpunit
-  - moodle-plugin-ci behat
+  - moodle-plugin-ci behat --moodle=${MOODLE_DIR}
