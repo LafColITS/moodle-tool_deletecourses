@@ -29,5 +29,5 @@ $string['deleteconfirm'] = 'This page lets you delete all the courses in the cat
 $string['deletequeued'] = 'An adhoc task has been queued to delete all the courses in the category <strong>{$a}</strong> and subcategories. It will run the next time cron executes.';
 $string['disablerecyclebin'] = 'Disable recycle bin';
 $string['pluginname'] = 'Delete courses';
-$string['privacy:metadata'] = 'The Course Merge Helper plugin does not store any personal data.';
+$string['privacy:metadata'] = 'The Delete courses plugin does not store any personal data.';
 $string['recursive'] = 'Recurse through subcategories?';
