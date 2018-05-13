@@ -15,19 +15,28 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Language strings for tool_deletecourses.
+ * Privacy implementation for tool_coursedaes.
  *
  * @package   tool_deletecourses
- * @copyright 2017 Lafayette College ITS
+ * @copyright 2018 Lafayette College ITS
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die;
+namespace tool_deletecourses\privacy;
 
-$string['deleteallcourses'] = 'Delete all courses';
-$string['deleteconfirm'] = 'This page lets you delete all the courses in the category <strong>{$a}</strong> and its subcategories. This action cannot be undone.';
-$string['deletequeued'] = 'An adhoc task has been queued to delete all the courses in the category <strong>{$a}</strong> and subcategories. It will run the next time cron executes.';
-$string['disablerecyclebin'] = 'Disable recycle bin';
-$string['pluginname'] = 'Delete courses';
-$string['privacy:metadata'] = 'The Course Merge Helper plugin does not store any personal data.';
-$string['recursive'] = 'Recurse through subcategories?';
+defined('MOODLE_INTERNAL') || die();
+
+class provider implements
+    // This plugin does not store any personal user data.
+    \core_privacy\local\metadata\null_provider {
+
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return  string
+     */
+    public static function get_reason() : string {
+        return 'privacy:metadata';
+    }
+}
