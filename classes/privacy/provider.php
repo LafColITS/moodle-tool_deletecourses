@@ -15,16 +15,28 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Privacy implementation for tool_coursedaes.
+ *
  * @package   tool_deletecourses
- * @copyright 2017 Lafayette College ITS
+ * @copyright 2018 Lafayette College ITS
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace tool_deletecourses\privacy;
+
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2017051201;
-$plugin->requires  = 2017051500;
-$plugin->cron      = 0;
-$plugin->component = 'tool_deletecourses';
-$plugin->maturity  = MATURITY_STABLE;
-$plugin->release   = 'v1.0.0';
+class provider implements
+    // This plugin does not store any personal user data.
+    \core_privacy\local\metadata\null_provider {
+
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return  string
+     */
+    public static function get_reason() {
+        return 'privacy:metadata';
+    }
+}
