@@ -26,6 +26,7 @@ defined('MOODLE_INTERNAL') || die;
 
 $string['deleteallcourses'] = 'Delete all courses';
 $string['deleteconfirm'] = 'This page lets you delete all the courses in the category <strong>{$a}</strong> and its subcategories. This action cannot be undone.';
+$string['deletecourses:deletecourses'] = 'Delete all courses in a category.';
 $string['deletequeued'] = 'An adhoc task has been queued to delete all the courses in the category <strong>{$a}</strong> and subcategories. It will run the next time cron executes.';
 $string['disablerecyclebin'] = 'Disable recycle bin';
 $string['pluginname'] = 'Delete courses';
