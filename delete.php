@@ -31,7 +31,7 @@ $context = \context_coursecat::instance($categoryid);
 
 // Ensure the user can be here.
 require_login(0, false);
-require_capability('moodle/course:delete', $context);
+require_capability('tool/deletecourses:deletecourses', $context);
 $returnurl = new moodle_url('/course/management.php', array('categoryid' => $categoryid));
 
 $PAGE->set_context($context);
