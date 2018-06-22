@@ -15,29 +15,22 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Navigation for tool_deletecourses.
+ * Custom capabilities for tool_deletecourses.
  *
  * @package   tool_deletecourses
- * @copyright 2017 Lafayette College ITS
+ * @copyright 2018 Lafayette College ITS
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-function tool_deletecourses_extend_navigation_category_settings($navigation, $context) {
-    if (has_capability('tool/deletecourses:deletecourses', $context)) {
-        $navigation->add_node(
-            navigation_node::create(
-                get_string('deleteallcourses', 'tool_deletecourses'),
-                new moodle_url(
-                    "/admin/tool/deletecourses/delete.php",
-                    array('category' => $context->instanceid)
-                ),
-                navigation_node::TYPE_SETTING,
-                null,
-                null,
-                new pix_icon('i/settings', '')
-                )
-            );
-    }
-}
+$capabilities = array(
+    'tool/deletecourses:deletecourses' => array(
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_COURSECAT,
+        'archetypes' => array(
+            'manager' => CAP_ALLOW
+        ),
+        'clonepermissionsfrom' => 'moodle/category:manage'
+    ),
+);
