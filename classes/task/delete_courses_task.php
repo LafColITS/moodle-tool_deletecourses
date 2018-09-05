@@ -24,8 +24,6 @@ namespace tool_deletecourses\task;
 
 defined('MOODLE_INTERNAL') || die;
 
-require_once($CFG->dirroot.'/lib/coursecatlib.php');
-
 class delete_courses_task extends \core\task\adhoc_task {
     public function get_component() {
         return 'tool_deletecourses';
@@ -45,7 +43,7 @@ class delete_courses_task extends \core\task\adhoc_task {
         }
 
         // Finish if invalid category id specified.
-        $category = \coursecat::get($data->category);
+        $category = \core_course_category::get($data->category);
         if (!$category) {
             mtrace("Invalid category id");
             return;
