@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 3.6.0 (November 28, 2018)
 
 - Update internal API in light of [MDL-62742](https://tracker.moodle.org/browse/MDL-62742)
 
