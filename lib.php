@@ -24,6 +24,12 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+/**
+ * Extends the category navigation to show the course deletion tool.
+ *
+ * @param navigation_node $navigation The navigation node to extend
+ * @param context         $context The category context
+ */
 function tool_deletecourses_extend_navigation_category_settings($navigation, $context) {
     if (has_capability('tool/deletecourses:deletecourses', $context)) {
         $navigation->add_node(

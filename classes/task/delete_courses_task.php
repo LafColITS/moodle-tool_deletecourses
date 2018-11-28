@@ -15,6 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Defines adhoc task for deleting courses.
  * @package   tool_deletecourses
  * @copyright 2017 Lafayette College ITS
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -24,11 +25,26 @@ namespace tool_deletecourses\task;
 
 defined('MOODLE_INTERNAL') || die;
 
+/**
+ * Adhoc task for deleting courses.
+ *
+ * @package   tool_deletecourses
+ * @copyright 2017 Lafayette College ITS
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class delete_courses_task extends \core\task\adhoc_task {
+    /**
+     * Return the name of the component.
+     *
+     * @return string The name of the component.
+     */
     public function get_component() {
         return 'tool_deletecourses';
     }
 
+    /**
+     * Execute the task
+     */
     public function execute() {
         global $CFG;
         $data = $this->get_custom_data();
@@ -79,6 +95,8 @@ class delete_courses_task extends \core\task\adhoc_task {
     }
 
     /**
+     * Delete all courses in the given category.
+     *
      * @param array $courses The courses to be deleted.
      */
     protected function delete_courses_in_category($courses) {

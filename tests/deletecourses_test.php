@@ -27,6 +27,14 @@ defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
 
+/**
+ * Unit tests deleting courses.
+ *
+ * @package    tool_deletecourses
+ * @category   test
+ * @copyright  2017 Lafayette College ITS
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class tool_deletecourses_deletecourses_testcase extends advanced_testcase {
     public function test_delete_course() {
         global $DB;

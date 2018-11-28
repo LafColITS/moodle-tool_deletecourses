@@ -25,7 +25,17 @@
 defined('MOODLE_INTERNAL') || die();
 require_once($CFG->libdir . '/formslib.php');
 
+/**
+ * Course deletion confirmation form.
+ *
+ * @package   tool_deletecourses
+ * @copyright 2017 Lafayette College ITS
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class tool_deletecourses_confirmation_form extends moodleform {
+    /**
+     * Defines the deletion confirmation form.
+     */
     public function definition() {
         $mform = $this->_form;
 
