@@ -18,11 +18,21 @@ cache:
 php:
  - 7.0
  - 7.1
+ - 7.2
 
 env:
  matrix:
+  - DB=pgsql MOODLE_BRANCH=MOODLE_36_STABLE
   - DB=pgsql MOODLE_BRANCH=master
+  - DB=mysqli MOODLE_BRANCH=MOODLE_36_STABLE
   - DB=mysqli MOODLE_BRANCH=master
+
+matrix:
+ exclude:
+  - php: 7.0
+    env: DB=pgsql MOODLE_BRANCH=master
+  - php: 7.0
+    env: DB=mysqli MOODLE_BRANCH=master
 
 before_install:
   - phpenv config-rm xdebug.ini
