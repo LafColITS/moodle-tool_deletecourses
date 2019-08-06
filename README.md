@@ -15,7 +15,7 @@ Copy the deletecourses folder into your /admin/tool directory and visit your Adm
 
 Usage
 -----
-The tool a link to the category navigation block, "Delete all courses." The user will be taken to a page describing what will happen and requesting confirmation. On confirmation, Moodle will create an "[adhoc task](https://docs.moodle.org/dev/Task_API#Adhoc_tasks)" to delete all the courses in the background. This requires the cron be enabled.
+The tool adds a link to the category navigation block, "Delete all courses." The user will be taken to a page describing what will happen and requesting confirmation. On confirmation, Moodle will create an "[adhoc task](https://docs.moodle.org/dev/Task_API#Adhoc_tasks)" to delete all the courses in the background. This requires the cron be enabled.
 
 If you're using Boost or a similar theme, you may need to access /course/index.php directly, navigate to the desired category, then click the edit cog at top right to reach the links.
 
