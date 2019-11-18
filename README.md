@@ -1,7 +1,7 @@
 Delete courses
 ==============
 
-[![Build Status](https://api.travis-ci.org/LafColITS/moodle-tool_deletecourses.png)](https://api.travis-ci.org/LafColITS/moodle-tool_deletecourses)
+[![Build Status](https://travis-ci.org/LafColITS/moodle-tool_deletecourses.svg?branch=master)](https://travis-ci.org/LafColITS/moodle-tool_deletecourses)
 
 This admin tool allows managers to delete all courses in a category (including subcategories if desired). The tool may optionally bypass the recycle bin for improved performance.
 
