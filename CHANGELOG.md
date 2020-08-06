@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Change default branch to "main"
+- Update CI tool to version 3
+- Dropped support for Moodle 3.6
+
 ## 3.6.0 (November 28, 2018)
 
 - Update internal API in light of [MDL-62742](https://tracker.moodle.org/browse/MDL-62742)
