@@ -4,7 +4,7 @@
 
 - Change default branch to "main"
 - Update CI tool to version 3
-- Dropped support for Moodle 3.6
+- Dropped support for Moodle 3.6-3.8
 - Migrate CI builds to Github Actions
 
 ## 3.6.0 (November 28, 2018)
