@@ -24,8 +24,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2018112800;
+$plugin->version   = 2022041200;
 $plugin->requires  = 2020061500;
 $plugin->component = 'tool_deletecourses';
 $plugin->maturity  = MATURITY_STABLE;
-$plugin->release   = 'v3.6.0';
+$plugin->release   = 'v3.9.0';
