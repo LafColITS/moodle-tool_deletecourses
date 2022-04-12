@@ -100,7 +100,8 @@ class delete_courses_task extends \core\task\adhoc_task {
      * @param array $courses The courses to be deleted.
      */
     protected function delete_courses_in_category($courses) {
-        global $DB;
+        global $DB, $CFG;
+        require_once($CFG->dirroot . '/course/lib.php');
 
         $lockfactory = \core\lock\lock_config::get_lock_factory('tool_deletecourses_delete_course_task');
         foreach ($courses as $course) {
@@ -110,6 +111,8 @@ class delete_courses_task extends \core\task\adhoc_task {
             // Guard against multiple workers in cron.
             if ($lock !== false) {
                 if ($coursedb = $DB->get_record('course', array('id' => $course->id))) {
+                    // course integrity check to prevent delete course errors
+                    \course_integrity_check($course->id, null, null, true);
                     if (!delete_course($coursedb, false)) {
                         mtrace("Failed to delete course {$course->id}");
                     }
