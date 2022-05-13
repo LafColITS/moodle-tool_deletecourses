@@ -24,8 +24,6 @@
 
 namespace tool_deletecourses\privacy;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Privacy implementation for tool_deletecourses.
  *

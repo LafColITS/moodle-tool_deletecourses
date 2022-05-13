@@ -23,6 +23,10 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace tool_deletecourses;
+
+use advanced_testcase;
+
 defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
@@ -32,10 +36,11 @@ global $CFG;
  *
  * @package    tool_deletecourses
  * @category   test
+ * @coversDefaultClass \tool_deletecourses
  * @copyright  2017 Lafayette College ITS
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class tool_deletecourses_deletecourses_testcase extends advanced_testcase {
+class tool_deletecourses_testcase extends advanced_testcase {
     public function test_delete_course() {
         global $DB;
 
