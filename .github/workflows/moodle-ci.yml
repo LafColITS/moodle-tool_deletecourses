@@ -17,7 +17,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:12
+        image: postgres:13
         env:
           POSTGRES_USER: 'postgres'
           POSTGRES_HOST_AUTH_METHOD: 'trust'
@@ -37,12 +37,14 @@ jobs:
       fail-fast: false
       matrix:
         php: ['7.4']
-        moodle-branch: ['MOODLE_39_STABLE', 'MOODLE_310_STABLE', 'MOODLE_311_STABLE', 'MOODLE_400_STABLE', 'master']
+        moodle-branch: ['MOODLE_39_STABLE', 'MOODLE_310_STABLE', 'MOODLE_311_STABLE', 'MOODLE_400_STABLE', 'MOODLE_401_STABLE']
         database: [pgsql, mariadb]
 
         include:
           - {moodle-branch: 'MOODLE_400_STABLE', php: '8.0', operating-system: 'ubuntu-22.04', database: 'mariadb'}
           - {moodle-branch: 'MOODLE_400_STABLE', php: '8.0', operating-system: 'ubuntu-22.04', database: 'pgsql'}
+          - {moodle-branch: 'MOODLE_401_STABLE', php: '8.0', operating-system: 'ubuntu-22.04', database: 'mariadb'}
+          - {moodle-branch: 'MOODLE_401_STABLE', php: '8.0', operating-system: 'ubuntu-22.04', database: 'pgsql'}
           - {moodle-branch: 'master', php: '8.0', operating-system: 'ubuntu-22.04', database: 'mariadb'}
           - {moodle-branch: 'master', php: '8.0', operating-system: 'ubuntu-22.04', database: 'pgsql'}
 
