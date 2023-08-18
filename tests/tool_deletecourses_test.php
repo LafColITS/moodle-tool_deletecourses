@@ -52,7 +52,13 @@ class tool_deletecourses_testcase extends advanced_testcase {
         for ($categoryid = 2; $categoryid <= 60; $categoryid++) {
             $category = $this->getDataGenerator()->create_category(array('parent' => $category1->id));
             for ($course = 1; $course <= 16; $course++) {
-                $this->getDataGenerator()->create_course(array('category' => $category->id));
+                $newcourse = $this->getDataGenerator()->create_course(array('category' => $category->id));
+                if($course % 8 == 0) {
+                    $this->getDataGenerator()->create_module('choice', array('course' => $newcourse->id));
+                }
+                if($course % 4 == 0) {
+                    $this->getDataGenerator()->create_module('page', array('course' => $newcourse->id));
+                }
             }
         }
 
@@ -61,6 +67,8 @@ class tool_deletecourses_testcase extends advanced_testcase {
         $this->assertEquals(945, $courses);
         $courses = $DB->count_records('course', array('category' => $category1->id));
         $this->assertEquals(0, $courses);
+        $this->assertEquals(118, $DB->count_records('choice'));
+        $this->assertEquals(236, $DB->count_records('page'));
 
         // Delete courses.
         $task = new \tool_deletecourses\task\delete_courses_task();
