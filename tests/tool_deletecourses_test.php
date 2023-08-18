@@ -53,10 +53,10 @@ class tool_deletecourses_testcase extends advanced_testcase {
             $category = $this->getDataGenerator()->create_category(array('parent' => $category1->id));
             for ($course = 1; $course <= 16; $course++) {
                 $newcourse = $this->getDataGenerator()->create_course(array('category' => $category->id));
-                if($course % 8 == 0) {
+                if ($course % 8 == 0) {
                     $this->getDataGenerator()->create_module('choice', array('course' => $newcourse->id));
                 }
-                if($course % 4 == 0) {
+                if ($course % 4 == 0) {
                     $this->getDataGenerator()->create_module('page', array('course' => $newcourse->id));
                 }
             }
@@ -90,5 +90,7 @@ class tool_deletecourses_testcase extends advanced_testcase {
         $this->assertEquals(1, $courses);
         $courses = $DB->count_records('course', array('category' => $category1->id));
         $this->assertEquals(0, $courses);
+        $this->assertEquals(0, $DB->count_records('choice'));
+        $this->assertEquals(0, $DB->count_records('page'));
     }
 }
