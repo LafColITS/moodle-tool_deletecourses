@@ -70,6 +70,10 @@ class tool_deletecourses_testcase extends advanced_testcase {
         $this->assertEquals(118, $DB->count_records('choice'));
         $this->assertEquals(236, $DB->count_records('page'));
 
+        // Evaluate effect of MDL-77924.
+        $manager = \core_plugin_manager::resolve_plugininfo_class('mod');
+        $manager::enable_plugin('choice', 0);
+
         // Delete courses.
         $task = new \tool_deletecourses\task\delete_courses_task();
         $task->set_custom_data(
