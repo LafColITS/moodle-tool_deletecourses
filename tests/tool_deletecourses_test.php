@@ -54,7 +54,7 @@ class tool_deletecourses_testcase extends advanced_testcase {
             for ($course = 1; $course <= 16; $course++) {
                 $newcourse = $this->getDataGenerator()->create_course(array('category' => $category->id));
                 if ($course % 8 == 0) {
-                    $this->getDataGenerator()->create_module('choice', array('course' => $newcourse->id));
+                    $this->getDataGenerator()->create_module('assign', array('course' => $newcourse->id));
                 }
                 if ($course % 4 == 0) {
                     $this->getDataGenerator()->create_module('page', array('course' => $newcourse->id));
@@ -67,12 +67,12 @@ class tool_deletecourses_testcase extends advanced_testcase {
         $this->assertEquals(945, $courses);
         $courses = $DB->count_records('course', array('category' => $category1->id));
         $this->assertEquals(0, $courses);
-        $this->assertEquals(118, $DB->count_records('choice'));
+        $this->assertEquals(118, $DB->count_records('assign'));
         $this->assertEquals(236, $DB->count_records('page'));
 
         // Evaluate effect of MDL-77924.
         $manager = \core_plugin_manager::resolve_plugininfo_class('mod');
-        $manager::enable_plugin('choice', 0);
+        $manager::enable_plugin('assign', 0);
 
         // Delete courses.
         $task = new \tool_deletecourses\task\delete_courses_task();
@@ -94,7 +94,7 @@ class tool_deletecourses_testcase extends advanced_testcase {
         $this->assertEquals(1, $courses);
         $courses = $DB->count_records('course', array('category' => $category1->id));
         $this->assertEquals(0, $courses);
-        $this->assertEquals(0, $DB->count_records('choice'));
+        $this->assertEquals(0, $DB->count_records('assign'));
         $this->assertEquals(0, $DB->count_records('page'));
     }
 }
