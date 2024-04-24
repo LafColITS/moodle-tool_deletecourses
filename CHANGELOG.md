@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Dropped support for Moodle 3.9-4.0
+
 ## 3.9.0 (April 12, 2022)
 
 - Add integrity check before deleting courses, thanks @eledia
