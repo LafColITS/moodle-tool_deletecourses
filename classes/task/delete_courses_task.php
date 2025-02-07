@@ -47,7 +47,7 @@ class delete_courses_task extends \core\task\adhoc_task {
         global $CFG;
         $data = $this->get_custom_data();
         if ($data->disablerecyclebin && !array_key_exists('tool_recyclebin', $CFG->forced_plugin_settings)) {
-            $CFG->forced_plugin_settings['tool_recyclebin'] = array('categorybinenable' => false);
+            $CFG->forced_plugin_settings['tool_recyclebin'] = ['categorybinenable' => false];
         }
 
         // Finish if no category id specified.
@@ -84,10 +84,10 @@ class delete_courses_task extends \core\task\adhoc_task {
     protected function get_courses_in_category($category, $recursive) {
         // Get all the courses.
         $courses = $category->get_courses(
-            array(
+            [
                 'recursive' => $recursive,
-                'limit' => 0
-            )
+                'limit' => 0,
+            ]
         );
         return $courses;
     }
@@ -108,7 +108,7 @@ class delete_courses_task extends \core\task\adhoc_task {
 
             // Guard against multiple workers in cron.
             if ($lock !== false) {
-                if ($coursedb = $DB->get_record('course', array('id' => $course->id))) {
+                if ($coursedb = $DB->get_record('course', ['id' => $course->id])) {
                     // Course integrity check to prevent delete course errors.
                     \course_integrity_check($course->id, null, null, true);
                     if (!delete_course($coursedb, false)) {

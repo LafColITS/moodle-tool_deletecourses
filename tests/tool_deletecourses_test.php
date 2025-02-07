@@ -41,7 +41,7 @@ global $CFG;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 final class tool_deletecourses_test extends advanced_testcase {
-    public function test_delete_course() {
+    public function test_delete_course(): void {
         global $DB;
 
         $this->setAdminUser();
@@ -50,26 +50,26 @@ final class tool_deletecourses_test extends advanced_testcase {
         $this->getDataGenerator()->create_user();
         $category1 = $this->getDataGenerator()->create_category();
         for ($categoryid = 2; $categoryid <= 60; $categoryid++) {
-            $category = $this->getDataGenerator()->create_category(array('parent' => $category1->id));
+            $category = $this->getDataGenerator()->create_category(['parent' => $category1->id]);
             for ($course = 1; $course <= 16; $course++) {
-                $this->getDataGenerator()->create_course(array('category' => $category->id));
+                $this->getDataGenerator()->create_course(['category' => $category->id]);
             }
         }
 
         // Sanity check.
         $courses = $DB->count_records('course');
         $this->assertEquals(945, $courses);
-        $courses = $DB->count_records('course', array('category' => $category1->id));
+        $courses = $DB->count_records('course', ['category' => $category1->id]);
         $this->assertEquals(0, $courses);
 
         // Delete courses.
         $task = new \tool_deletecourses\task\delete_courses_task();
         $task->set_custom_data(
-            array(
+            [
                 'category' => $category1->id,
                 'recursive' => true,
-                'disablerecyclebin' => true
-            )
+                'disablerecyclebin' => true,
+            ]
         );
         \core\task\manager::queue_adhoc_task($task);
         $task = \core\task\manager::get_next_adhoc_task(time());
@@ -80,7 +80,7 @@ final class tool_deletecourses_test extends advanced_testcase {
         // All courses should be deleted.
         $courses = $DB->count_records('course');
         $this->assertEquals(1, $courses);
-        $courses = $DB->count_records('course', array('category' => $category1->id));
+        $courses = $DB->count_records('course', ['category' => $category1->id]);
         $this->assertEquals(0, $courses);
     }
 }

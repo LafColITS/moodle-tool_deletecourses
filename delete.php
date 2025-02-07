@@ -31,7 +31,7 @@ $context = \context_coursecat::instance($categoryid);
 // Ensure the user can be here.
 require_login(0, false);
 require_capability('tool/deletecourses:deletecourses', $context);
-$returnurl = new moodle_url('/course/management.php', array('categoryid' => $categoryid));
+$returnurl = new moodle_url('/course/management.php', ['categoryid' => $categoryid]);
 
 $PAGE->set_context($context);
 $PAGE->set_pagelayout('admin');
@@ -40,7 +40,7 @@ $PAGE->set_title(new lang_string('coursecatmanagement') . ': '. new lang_string(
 $PAGE->set_heading($SITE->fullname);
 
 // Confirmation form.
-$mform = new tool_deletecourses_confirmation_form('delete.php', array('category' => $categoryid));
+$mform = new tool_deletecourses_confirmation_form('delete.php', ['category' => $categoryid]);
 if ($mform->is_cancelled()) {
     redirect($returnurl);
 } else if ($data = $mform->get_data()) {
@@ -52,11 +52,11 @@ if ($mform->is_cancelled()) {
     }
     $task = new \tool_deletecourses\task\delete_courses_task();
     $task->set_custom_data(
-        array(
+        [
             'category' => $data->category,
             'recursive' => $data->recursive,
-            'disablerecyclebin' => $data->disablerecyclebin
-        )
+            'disablerecyclebin' => $data->disablerecyclebin,
+        ]
     );
     \core\task\manager::queue_adhoc_task($task);
     redirect($returnurl, get_string('deletequeued', 'tool_deletecourses', $category->name));
