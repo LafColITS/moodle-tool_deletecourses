@@ -36,7 +36,7 @@ $returnurl = new moodle_url('/course/management.php', ['categoryid' => $category
 $PAGE->set_context($context);
 $PAGE->set_pagelayout('admin');
 $PAGE->set_url(new moodle_url('/admin/tool/deletecourses/delete.php'));
-$PAGE->set_title(new lang_string('coursecatmanagement') . ': '. new lang_string('deleteallcourses', 'tool_deletecourses'));
+$PAGE->set_title(new lang_string('coursecatmanagement') . ': ' . new lang_string('deleteallcourses', 'tool_deletecourses'));
 $PAGE->set_heading($SITE->fullname);
 
 // Confirmation form.
