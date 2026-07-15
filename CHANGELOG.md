@@ -1,8 +1,9 @@
 # Changelog
 
-## Unreleased
+## 4.1.0 (July 15, 2026)
 
 - Dropped support for Moodle 3.9-4.0
+- Add composer support
 
 ## 3.9.0 (April 12, 2022)
 

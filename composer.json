@@ -1,0 +1,12 @@
+{
+    "name": "lafayettecollege/moodle-tool_deletecourses",
+    "description": "This admin tool allows managers to delete all courses in a category (including subcategories if desired).",
+    "type": "moodle-tool",
+    "require": {
+        "composer/installers": "*"
+    },
+    "license": "GPL-3.0-or-later",
+    "extra": {
+        "installer-name": "deletecourses"
+    }
+}
