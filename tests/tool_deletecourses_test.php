@@ -36,7 +36,7 @@ global $CFG;
  *
  * @package    tool_deletecourses
  * @category   test
- * @coversDefaultClass \tool_deletecourses
+ * @covers     \tool_deletecourses
  * @copyright  2017 Lafayette College ITS
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
